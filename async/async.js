@@ -7,21 +7,30 @@
 var async = require('async'),
 	request = require('request');
 
-console.log('Start Line', new Date());
 
-async.parallel({
-	kcl : function (cb) {
-		request.get('http://thekrazycouponlady.com', function () {
-			console.log('First Call', new Date());
-			return cb(null, true);
-		});
-	},
-	kcl2 : function (cb) {
-		request.get('http://thekrazycouponlady.com', function () {
-			console.log('Second Call', new Date());
-			return cb(null, true);
-		});
-	}
-}, function (err, data) {
-	console.log('Finish Line', new Date());
-});
+function doRequest(req, res) {
+	var start = 'Start Line ' + new Date();
+
+	async.parallel({
+		kcl : function (cb) {
+			request.get('http://thekrazycouponlady.com', function () {
+				var msg = 'First Call ' + new Date();
+				return cb(null, msg);
+			});
+		},
+		kcl2 : function (cb) {
+			request.get('http://thekrazycouponlady.com', function () {
+				var msg = 'Second Call ' + new Date();
+				return cb(null, msg);
+			});
+		}
+	}, function (err, data) {
+		var end = 'Finish Line ' + new Date();
+		data.start = start;
+		data.end = end;
+		return res.send(data);
+	});
+}
+
+module.exports = doRequest;
+
