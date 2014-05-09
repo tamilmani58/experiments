@@ -10,12 +10,13 @@ var request = require('request');
 // Or we need to read multiple files together and return the results back
 
 function doRequest(req, res) {
-	var data = {};
+	var data = {},
+		url = 'http://1.cuzillion.com/bin/resource.cgi?type=js&sleep=5&n=1&t=1399648150';
 	data.start = 'Start Line ' + new Date();
-	request.get('http://thekrazycouponlady.com', function (error, response, body) {
-		data.kcl = 'First Call ' + new Date();
-		request.get('http://thekrazycouponlady.com', function (error, response, body) {
-			data.kcl2 = 'Second Call ' + new Date();
+	request.get(url, function (error, response, body) {
+		data.call1 = 'First Call ' + new Date();
+		request.get(url, function (error, response, body) {
+			data.call2 = 'Second Call ' + new Date();
 			data.end = 'Finish Line ' + new Date();
 			return res.send(data);
 		});

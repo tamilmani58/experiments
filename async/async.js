@@ -9,17 +9,18 @@ var async = require('async'),
 
 
 function doRequest(req, res) {
-	var start = 'Start Line ' + new Date();
+	var start = 'Start Line ' + new Date(),
+		url = 'http://1.cuzillion.com/bin/resource.cgi?type=js&sleep=5&n=1&t=1399648150';
 
 	async.parallel({
-		kcl : function (cb) {
-			request.get('http://thekrazycouponlady.com', function () {
+		call1 : function (cb) {
+			request.get(url, function () {
 				var msg = 'First Call ' + new Date();
 				return cb(null, msg);
 			});
 		},
-		kcl2 : function (cb) {
-			request.get('http://thekrazycouponlady.com', function () {
+		call2 : function (cb) {
+			request.get(url, function () {
 				var msg = 'Second Call ' + new Date();
 				return cb(null, msg);
 			});

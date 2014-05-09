@@ -18,12 +18,13 @@ function deferredWrapper(url, log) {
 
 function doRequest(req, res) {
 	var start = "Start Line " + new Date(),
-		finalValue = [start];
+		finalValue = [start],
+		url = 'http://1.cuzillion.com/bin/resource.cgi?type=js&sleep=5&n=1&t=1399648150';
 	// Creating an array of promises that we need to get resolved
-	var promisesArray = [deferredWrapper('http://thekrazycouponlady.com', 'First Call'), deferredWrapper('http://thekrazycouponlady.com', 'Second Call')];
+	var promisesArray = [deferredWrapper(url, 'First Call'), deferredWrapper(url, 'Second Call')];
 
 	// Settle them down
-	when.settle(promisesArray).then(function (descriptors) {
+	return when.settle(promisesArray).then(function (descriptors) {
 		finalValue.concat(descriptors.map(function (descriptor) {
 			return descriptor.value;
 		}));
