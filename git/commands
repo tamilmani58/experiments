@@ -1,0 +1,164 @@
+mkdir mnet.git
+cd mnet.git
+
+GIT Setup
+
+git init --bare
+
+git clone mnet.get
+
+git remote show origin
+
+git branch
+
+GIT Tracking
+
+// Create a file
+
+git status
+git add README
+git status
+git commit -m "My first commit"
+git status
+
+// Edit the same file
+
+git status
+git add README
+
+// Edit it again
+
+git status
+
+// Add and exit
+
+git add README
+git commit -m "Our second commit"
+
+// Edit it again
+
+git diff
+
+git diff --staged
+
+git diff HEAD
+
+// Remove the file from stage
+
+git rm --cached README
+git st
+git ls-files -o -s
+
+// Remove the file from git as well from file system
+
+git rm README
+git ls-files -o -s
+
+// Create README Again
+
+// Move file
+git mv README README.md
+
+// Referencing
+git whereis HEAD^
+git whereis HEAD@{1}
+git whereis HEAD~1
+git show HEAD@{1.hour.ago}
+git log HEAD@{0}..HEAD@{1}
+
+// Git Commit
+
+// Edit file again
+git add README
+git commit -m "Test Commit"
+git show HEAD
+
+// Edit Again
+git commit -am "Skip stage commit"
+git show HEAD
+
+// Edit Again
+git commit --amend
+git show HEAD
+
+
+// Git Undo
+// Edit Again
+git st
+git checkout README
+
+// Edit Again & Staged Changes remain as is
+git st
+git add README
+git st
+git checkout README
+git st
+
+// Edit Staged changes goes away
+git checkout HEAD -- README
+git st
+
+// Edit again
+git st
+git add README
+git commit -m "revert commit"
+git revert HEAD
+git st
+
+// Edit again
+git st
+git add README
+git reset --soft HEAD
+git st
+
+git reset --mixed HEAD
+git st
+
+git reset --hard HEAD
+git st
+
+
+// Ignore
+
+# This is a comment
+# Exclude Everything inside foo
+foo/
+# Except bar
+!foo/bar
+# Exclude Everything between abc and cde folders
+abc/**/cde
+# Exclude efg anywhere in the project
+**/efg
+
+// Git Stash
+
+// Edit file
+
+git add README
+git checkout master
+
+git stash
+git checkout master
+git checkout test
+git stash apply
+git stash apply --index
+git stash drop
+
+git stash branch
+
+// Git Tag
+git tag -a v0.1 -m "a tag for a revision"
+git tag -v
+git show v0.1
+git push origin v0.1
+git describe
+git describe --contains
+
+// Git Branching
+git branch
+git checkout -b branchname
+git branch -d branchname
+git branch --contains
+git branch --merged
+git push origin :branchname
+git push origin --delete branchname
