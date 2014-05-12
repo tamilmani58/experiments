@@ -162,3 +162,12 @@ git branch --contains
 git branch --merged
 git push origin :branchname
 git push origin --delete branchname
+
+// Git Log
+git log --author=tamil.s
+git log --since='yesterday'
+git log --grep='test'
+git log -Stest
+
+// Git grep
+git grep -e 'test' --and -e 'hi'
