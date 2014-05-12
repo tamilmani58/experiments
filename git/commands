@@ -163,6 +163,8 @@ git branch --merged
 git push origin :branchname
 git push origin --delete branchname
 
+git merge-base master test
+
 // Git Log
 git log --author=tamil.s
 git log --since='yesterday'
@@ -171,3 +173,11 @@ git log -Stest
 
 // Git grep
 git grep -e 'test' --and -e 'hi'
+
+// Git Double and triple dots
+// Commit Diffs between two branches
+git log master..experiment
+// Commits that are in master but not in experiment
+git log master ^experiement
+// Commits that are reachable either via master or experiment but not both
+git log master...experiment
