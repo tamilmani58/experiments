@@ -43,6 +43,10 @@ git diff --staged
 
 git diff HEAD
 
+git diff --stat
+
+git diff -p
+
 // Remove the file from stage
 
 git rm --cached README
